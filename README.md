@@ -25,10 +25,10 @@ yarn add @passeriform/solid-fiber-interaction
 ### Basic Example
 
 ```tsx
-import { onCleanup, onMount, createEffect } from "solid-js"
-import { BoxGeometry, Mesh, MeshBasicMaterial } from "three"
-import SceneProvider, { useScene } from "@passeriform/solid-fiber-scene"
 import InteractionProvider, { useInteraction } from "@passeriform/solid-fiber-interaction"
+import SceneProvider, { useScene } from "@passeriform/solid-fiber-scene"
+import { createEffect, onCleanup, onMount } from "solid-js"
+import { BoxGeometry, Mesh, MeshBasicMaterial } from "three"
 
 const Cube = () => {
     const { addToScene } = useScene()
@@ -93,9 +93,9 @@ Props:
 
 ```ts
 type InteractionOverridableProps<T extends Mesh> = {
-    root: Object3D | undefined                  // root object to interact with
-    filter: (meshes: Object3D[]) => T[]        // filter meshes to enable interaction
-    allowEmptySelection: boolean                // allow clearing selection on click
+    root: Object3D | undefined // root object to interact with
+    filter: (meshes: Object3D[]) => T[] // filter meshes to enable interaction
+    allowEmptySelection: boolean // allow clearing selection on click
 }
 ```
 
@@ -118,7 +118,7 @@ You can optionally pass overrides:
 ```ts
 const { interaction } = useInteraction({
     root: () => myRootMesh,
-    filter: () => (meshes) => meshes.filter(mesh => mesh.name.startsWith("clickable")),
+    filter: () => (meshes) => meshes.filter((mesh) => mesh.name.startsWith("clickable")),
 })
 ```
 
@@ -128,9 +128,9 @@ const { interaction } = useInteraction({
 
 ```ts
 type InteractionState<T extends Mesh> = {
-    current: T | undefined    // mesh currently hovered or selected
-    last: T | undefined       // previous mesh hovered or selected
-    repeat: boolean           // whether the current mesh is repeated interaction
+    current: T | undefined // mesh currently hovered or selected
+    last: T | undefined // previous mesh hovered or selected
+    repeat: boolean // whether the current mesh is repeated interaction
 }
 ```
 
